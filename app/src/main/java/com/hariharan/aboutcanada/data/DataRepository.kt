@@ -4,6 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.hariharan.aboutcanada.data.model.Facts
 import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -33,12 +36,36 @@ class DataRepository {
      */
     suspend fun fetchCanadaFacts() {
         val fetchFactsListApi = getRetrofitInstance().create(FetchFactsListApi::class.java)
-        val response = fetchFactsListApi.getFactsList()
-        Log.i("info", "Facts Response $response")
-        apiResponseLD.value = response.code()
-        if (response.isSuccessful) {
-            factsData = response.body()
-        }
+        val call = fetchFactsListApi.getFactsList()
+        call.enqueue(object : Callback<Facts> {
+
+            override fun onResponse(call: Call<Facts>, response: Response<Facts>) {
+                Log.i("info", "Facts Response $response")
+                apiResponseLD.value = response.code()
+                if (response.isSuccessful) {
+                    factsData = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<Facts>, t: Throwable) {
+                apiResponseLD.value = -1
+                Log.e("app", "Error in network call ${t.message}")
+            }
+        })
+    }
+
+    /**
+     * Method to get live data response of api request
+     */
+    fun getFactsLiveData(): MutableLiveData<Int> {
+        return apiResponseLD
+    }
+
+    /**
+     * Method to get response data from api
+     */
+    fun getResponseData() : Facts? {
+        return factsData
     }
 
     /**

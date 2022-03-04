@@ -1,7 +1,7 @@
 package com.hariharan.aboutcanada.data
 
 import com.hariharan.aboutcanada.data.model.Facts
-import retrofit2.Response
+import retrofit2.Call
 import retrofit2.http.GET
 
 /**
@@ -10,5 +10,5 @@ import retrofit2.http.GET
 interface FetchFactsListApi {
 
     @GET("/s/2iodh4vg0eortkl/facts.json")
-    suspend fun getFactsList() : Response<Facts>
+    suspend fun getFactsList() : Call<Facts>
 }
