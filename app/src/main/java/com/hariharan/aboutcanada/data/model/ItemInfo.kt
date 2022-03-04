@@ -7,6 +7,6 @@ import com.google.gson.annotations.SerializedName
  */
 data class ItemInfo(
     @SerializedName("title") var title: String? = "",
-    @SerializedName("description") var mobile: String? = "",
-    @SerializedName("imageHref") var address1: String? = "",
+    @SerializedName("description") var description: String? = "",
+    @SerializedName("imageHref") var imageUrl: String? = "",
 )
