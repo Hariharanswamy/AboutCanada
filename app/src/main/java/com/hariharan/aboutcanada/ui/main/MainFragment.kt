@@ -50,7 +50,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.getResponseCode().observe(viewLifecycleOwner, observer)
+        viewModel.getResponseLD().observe(viewLifecycleOwner, observer)
         binding.recyclerview.layoutManager = LinearLayoutManager(activity)
         binding.main.setOnRefreshListener {
             viewModel.fetchData()

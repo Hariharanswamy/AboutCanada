@@ -27,7 +27,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         fetchData()
     }
 
-    fun getResponseCode(): MutableLiveData<Facts> {
+    fun getResponseLD(): MutableLiveData<Facts> {
         return data
     }
 
