@@ -26,6 +26,8 @@ class MainFragment : Fragment() {
 
     private lateinit var binding: MainFragmentBinding
 
+    private val adapter = FactsAdapter()
+
     private val observer = Observer<Facts> { facts ->
         binding.main.isRefreshing = false
         val title = facts?.title
@@ -34,8 +36,7 @@ class MainFragment : Fragment() {
         }
         val factsList = facts?.facts
         if (!factsList.isNullOrEmpty()) {
-            val adapter = FactsAdapter(factsList)
-            binding.recyclerview.adapter = adapter
+            adapter.setData(factsList)
         }
     }
 
@@ -52,6 +53,7 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.getResponseLD().observe(viewLifecycleOwner, observer)
         binding.recyclerview.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerview.adapter = adapter
         binding.main.setOnRefreshListener {
             viewModel.fetchData()
         }

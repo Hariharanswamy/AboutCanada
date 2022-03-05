@@ -14,10 +14,12 @@ import com.hariharan.aboutcanada.data.model.ItemInfo
 /**
  * Adapter class to show the items in the recycler view.
  */
-class FactsAdapter(private var list: List<ItemInfo>) :
+class FactsAdapter :
     RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
 
     private lateinit var context: Context
+
+    private var list: List<ItemInfo> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -45,6 +47,14 @@ class FactsAdapter(private var list: List<ItemInfo>) :
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    /**
+     * Set the data to recycler view
+     */
+    fun setData(data:List<ItemInfo>) {
+        list = data
+        notifyDataSetChanged()
     }
 
     /**
