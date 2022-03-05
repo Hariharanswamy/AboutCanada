@@ -31,12 +31,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return data
     }
 
+    /**
+     * Method to fetch the data if internet is available
+     */
     fun fetchData() {
         if (isNetworkAvailable()) {
             fetchDataCoroutine()
         }
     }
 
+    /**
+     * Method to check if internet is available.
+     */
     fun isNetworkAvailable(): Boolean {
         val connectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -58,6 +64,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return false
     }
 
+    /**
+     * Method to fetch data using co-routine
+     */
     private fun fetchDataCoroutine() {
         viewModelScope.launch {
             repository.fetchCanadaFacts()

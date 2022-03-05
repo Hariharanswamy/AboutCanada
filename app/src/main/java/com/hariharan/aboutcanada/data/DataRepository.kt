@@ -31,9 +31,7 @@ class DataRepository {
         val response = fetchFactsListApi.getFactsList()
         if (response.isSuccessful) {
             Log.i("info", "Facts Response ${response.body()}")
-            if (response.isSuccessful) {
-                apiResponseLD.value = response.body()
-            }
+            apiResponseLD.value = response.body()
         } else {
             Log.i("info", "facts request failed")
         }
