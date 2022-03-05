@@ -7,5 +7,5 @@ import com.google.gson.annotations.SerializedName
  */
 data class Facts(
     @SerializedName("title") var title: String? = "",
-    @SerializedName("rows") var facts: List<ItemInfo>? = emptyList(),
+    @SerializedName("rows") var facts: ArrayList<ItemInfo> = arrayListOf()
 )

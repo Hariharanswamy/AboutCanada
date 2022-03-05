@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_workspace/AboutCanada/app/src/main/res/font/overlock.xml" value="0.23020833333333332" />
+        <entry key="..\:/Android_workspace/AboutCanada/app/src/main/res/layout/main_activity.xml" value="0.2" />
         <entry key="..\:/Android_workspace/AboutCanada/app/src/main/res/layout/main_fragment.xml" value="0.2" />
         <entry key="..\:/Android_workspace/AboutCanada/app/src/main/res/layout/recycler_view_item.xml" value="0.2" />
       </map>
