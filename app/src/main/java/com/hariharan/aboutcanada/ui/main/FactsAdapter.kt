@@ -29,11 +29,13 @@ class FactsAdapter(private var list: List<ItemInfo>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val factInfo = list[position]
         if (factInfo.imageUrl !== null) {
+            holder.imageView.visibility = View.VISIBLE
             Glide.with(context)
                 .load(factInfo.imageUrl)
                 .placeholder(R.drawable.placeholder)
                 .into(holder.imageView)
         } else {
+            holder.imageView.visibility = View.GONE
             Glide.with(context).clear(holder.imageView)
             holder.imageView.setImageDrawable(null)
         }
